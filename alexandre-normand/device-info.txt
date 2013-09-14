@@ -1,0 +1,133 @@
+Connection Status Device connected 
+Current Configuration 1 
+Speed Full (12 Mbit/s) 
+Device Address 8 
+Number Of Open Pipes 3 
+
+Device Descriptor DexCom Gen4 USB Serial
+Offset Field Size Value Description 
+0 bLength 1 12h  
+1 bDescriptorType 1 01h Device 
+2 bcdUSB 2 0110h USB Spec 1.1 
+4 bDeviceClass 1 02h CDC Control 
+5 bDeviceSubClass 1 00h  
+6 bDeviceProtocol 1 00h  
+7 bMaxPacketSize0 1 08h 8 bytes 
+8 idVendor 2 22A3h  
+10 idProduct 2 0047h  
+12 bcdDevice 2 0100h 1.00 
+14 iManufacturer 1 01h "DexCom" 
+15 iProduct 1 02h "DexCom Gen4 USB Serial" 
+16 iSerialNumber 1 00h  
+17 bNumConfigurations 1 01h  
+
+Configuration Descriptor 1 
+Offset Field Size Value Description 
+0 bLength 1 09h  
+1 bDescriptorType 1 02h Configuration 
+2 wTotalLength 2 0043h  
+4 bNumInterfaces 1 02h  
+5 bConfigurationValue 1 01h  
+6 iConfiguration 1 00h  
+7 bmAttributes 1 C0h Self Powered 
+ 4..0: Reserved  ...00000   
+ 5: Remote Wakeup  ..0.....  No 
+ 6: Self Powered  .1......  Yes 
+ 7: Reserved (set to one)
+(bus-powered for 1.0)  1.......   
+8 bMaxPower 1 FAh 500 mA 
+
+Interface Descriptor 0/0 CDC Control, 1 Endpoint
+Offset Field Size Value Description 
+0 bLength 1 09h  
+1 bDescriptorType 1 04h Interface 
+2 bInterfaceNumber 1 00h  
+3 bAlternateSetting 1 00h  
+4 bNumEndpoints 1 01h  
+5 bInterfaceClass 1 02h CDC Control 
+6 bInterfaceSubClass 1 02h Abstract Control Model 
+7 bInterfaceProtocol 1 01h AT Commands: V.250 etc 
+8 iInterface 1 00h  
+
+Header Functional Descriptor 
+Offset Field Size Value Description 
+0 bFunctionLength 1 05h  
+1 bDescriptorType 1 24h CS Interface 
+2 bDescriptorSubtype 1 00h Header 
+3 bcdCDC 2 1001h 10.01 
+
+Call Management Functional Descriptor 
+Offset Field Size Value Description 
+0 bFunctionLength 1 05h  
+1 bDescriptorType 1 24h CS Interface 
+2 bDescriptorSubtype 1 01h Call Management 
+3 bmCapabilities 1 03h  
+ 7..2: Reserved  000000..   
+ 1: Data Ifc Usage  ......1.  Call management over Data Ifc 
+ 0: Call Management  .......1  Handles call management itself 
+4 bDataInterface 1 01h  
+
+Abstract Control Management Functional Descriptor 
+Offset Field Size Value Description 
+0 bFunctionLength 1 04h  
+1 bDescriptorType 1 24h CS Interface 
+2 bDescriptorSubtype 1 02h Abstract Control Management 
+3 bmCapabilities 1 06h  
+ 7..4: Reserved  0000....   
+ 3: Connection  ....0...   
+ 2: Send Break  .....1..  Send Break request supported 
+ 1: Line Coding  ......1.  Line Coding requests and Serial State notification supported 
+ 0: Comm Features  .......0   
+
+Union Functional Descriptor 
+Offset Field Size Value Description 
+0 bFunctionLength 1 05h  
+1 bDescriptorType 1 24h CS Interface 
+2 bDescriptorSubtype 1 06h Union 
+3 bControlInterface 1 00h  
+4 bSubordinateInterface0 1 01h CDC Data 
+
+Endpoint Descriptor 81 1 In, Interrupt, 255 ms
+Offset Field Size Value Description 
+0 bLength 1 07h  
+1 bDescriptorType 1 05h Endpoint 
+2 bEndpointAddress 1 81h 1 In 
+3 bmAttributes 1 03h Interrupt 
+ 1..0: Transfer Type  ......11  Interrupt 
+ 7..2: Reserved  000000..   
+4 wMaxPacketSize 2 0008h 8 bytes 
+6 bInterval 1 FFh 255 ms 
+
+Interface Descriptor 1/0 CDC Data, 2 Endpoints
+Offset Field Size Value Description 
+0 bLength 1 09h  
+1 bDescriptorType 1 04h Interface 
+2 bInterfaceNumber 1 01h  
+3 bAlternateSetting 1 00h  
+4 bNumEndpoints 1 02h  
+5 bInterfaceClass 1 0Ah CDC Data 
+6 bInterfaceSubClass 1 00h  
+7 bInterfaceProtocol 1 00h  
+8 iInterface 1 00h  
+
+Endpoint Descriptor 02 2 Out, Bulk, 64 bytes
+Offset Field Size Value Description 
+0 bLength 1 07h  
+1 bDescriptorType 1 05h Endpoint 
+2 bEndpointAddress 1 02h 2 Out 
+3 bmAttributes 1 02h Bulk 
+ 1..0: Transfer Type  ......10  Bulk 
+ 7..2: Reserved  000000..   
+4 wMaxPacketSize 2 0040h 64 bytes 
+6 bInterval 1 00h  
+
+Endpoint Descriptor 83 3 In, Bulk, 64 bytes
+Offset Field Size Value Description 
+0 bLength 1 07h  
+1 bDescriptorType 1 05h Endpoint 
+2 bEndpointAddress 1 83h 3 In 
+3 bmAttributes 1 02h Bulk 
+ 1..0: Transfer Type  ......10  Bulk 
+ 7..2: Reserved  000000..   
+4 wMaxPacketSize 2 0040h 64 bytes 
+6 bInterval 1 00h  
