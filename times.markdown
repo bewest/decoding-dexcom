@@ -82,8 +82,11 @@ in
 0000420: ffff ffff dd4b                           .....K
 ```
 
+### noticeable ribbons
 
-This data segment has a ribbons of regular cycles:
+Notice those segments like **`dX08`, often paired with `X100` and `X700`**.
+
+This data segment has ribbons of regular cycles:
 ```hex
 00000a0: 14f8 d308 ca95 d308 2e00 f6f7 d308 975d  ...............]
 00000b0: 326a d408 e807 d408 3900 146a d408 aaf8  2j......9..j....
@@ -92,6 +95,8 @@ This data segment has a ribbons of regular cycles:
 00000e0: 0c50 d508 c2ed d408 5100 ee4f d508 d304  .P......Q..O....
 00000f0: 2b50 d508 e1ed d408 5100 0d50 d508 bc11  +P......Q..P....
 ```
+
+### xml
 
 In particular, this seems to match up with the
 [XML exported data](https://github.com/bewest/decoding-dexcom/blob/master/alexandre-normand/incremental-export.xml#L95-L109):
@@ -114,4 +119,71 @@ In particular, this seems to match up with the
     <Glucose InternalTime="2013-09-13 12:02:33" DisplayTime="2013-09-13 05:03:11" Value="68"/>
     <Glucose InternalTime="2013-09-13 12:07:33" DisplayTime="2013-09-13 05:08:11" Value="70"/>
 ```
+
+Guessing the cyclical ribbons in the above
+data segment refer to the `DisplayTime`'s shown here.
+There are a lot of `09`, `0D`, `0B`, `04`, `05`, `03`...
+
+Also notice how the minutes are every 5 minutes, 3 minutes off the top
+of the hour.
+
+Minutes cycle between:
+```csv
+DisplayTime="2013-09-13 03:58:12"
+DisplayTime="2013-09-13 04:03:12"
+DisplayTime="2013-09-13 04:08:12"
+DisplayTime="2013-09-13 04:13:12"
+DisplayTime="2013-09-13 04:18:12"
+DisplayTime="2013-09-13 04:23:12"
+DisplayTime="2013-09-13 04:28:11"
+DisplayTime="2013-09-13 04:33:11"
+DisplayTime="2013-09-13 04:38:11"
+DisplayTime="2013-09-13 04:43:11"
+DisplayTime="2013-09-13 04:48:11"
+DisplayTime="2013-09-13 04:53:11"
+DisplayTime="2013-09-13 04:58:11"
+DisplayTime="2013-09-13 05:03:11"
+DisplayTime="2013-09-13 05:08:11"
+```
+
+The fifth column in the hexdump seems to cycles between:
+
+```csv
+1f00
+0000
+8700
+3700
+4b00
+5f00
+4400
+4900
+4700
+5100
+2e00
+3900
+5600
+6700
+5100
+5100
+5100
+5000
+4100
+7300
+4000
+4500
+6100
+6f00
+7200
+3e00
+5300
+5000
+5d00
+5800
+5100
+3f00
+4f00
+```
+
+So it seems the fifth column likely has some relationship to minutes.
+
 
