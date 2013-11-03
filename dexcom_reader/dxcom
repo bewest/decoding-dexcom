@@ -1,11 +1,13 @@
 #!/bin/bash
 
+PATH=$PATH:./
 command=$1
 candidate="dxcom-$command"
 confirmed=$(which $candidate)
 
+
 if [[ -n "$confirmed" ]] ; then
-  echo $confirmed $*
+  shift
   $confirmed $*
 
 fi

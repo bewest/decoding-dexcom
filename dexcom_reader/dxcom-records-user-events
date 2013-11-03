@@ -16,7 +16,9 @@ def main( ):
     dex = Dexcom(device)
     records = dex.ReadRecords('USER_EVENT_DATA')
     print '### Event records: %d' % (len(records))
+    print '```python'
     pprint(records)
+    print '```'
     print '### Event records: %d' % (len(records))
 
 if __name__ == '__main__':

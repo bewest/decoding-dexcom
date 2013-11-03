@@ -16,7 +16,9 @@ def main( ):
     dex = Dexcom(device)
     records = dex.ReadRecords('METER_DATA')
     print '### Meter records: %d' % (len(records))
+    print '```python'
     pprint(records)
+    print '```'
     print '### Meter records: %d' % (len(records))
 
 if __name__ == '__main__':

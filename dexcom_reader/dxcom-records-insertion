@@ -16,7 +16,9 @@ def main( ):
     dex = Dexcom(device)
     records = dex.ReadRecords('INSERTION_TIME')
     print '### Insertion records: %d' % (len(records))
+    print '```python'
     pprint(records)
+    print '```'
     print '### Insertion records: %d' % (len(records))
 
 if __name__ == '__main__':
