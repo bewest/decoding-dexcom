@@ -1,0 +1,11 @@
+#!/bin/bash
+
+command=$1
+candidate="dxcom-$command"
+confirmed=$(which $candidate)
+
+if [[ -n "$confirmed" ]] ; then
+  echo $confirmed $*
+  $confirmed $*
+
+fi

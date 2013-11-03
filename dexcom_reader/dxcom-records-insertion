@@ -1,0 +1,26 @@
+#!/usr/bin/python
+
+import user
+import dexcom_reader
+from dexcom_reader import readdata
+from pprint import pformat, pprint
+
+def main( ):
+  Dexcom = readdata.Dexcom
+  device = Dexcom.FindDevice()
+  if not device:
+    sys.stderr.write('Could not find Dexcom G4 Receiver!\n')
+    sys.exit(1)
+  else:
+    print device
+    dex = Dexcom(device)
+    records = dex.ReadRecords('INSERTION_TIME')
+    print '### Insertion records: %d' % (len(records))
+    pprint(records)
+    print '### Insertion records: %d' % (len(records))
+
+if __name__ == '__main__':
+  main( )
+
+#####
+# EOF

@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+import user
+import dexcom_reader
+from dexcom_reader import readdata
+from pprint import pformat, pprint
+
+def main( ):
+  Dexcom = readdata.Dexcom
+  device = Dexcom.FindDevice()
+  if not device:
+    sys.stderr.write('Could not find Dexcom G4 Receiver!\n')
+    sys.exit(1)
+  else:
+    print device
+    dex = Dexcom(device)
+    print ('Found %s S/N: %s'
+           % (dex.GetFirmwareHeader().get('ProductName'),
+              dex.ReadManufacturingData().get('SerialNumber')))
+    print 'Transmitter paired: %s' % dex.ReadTransmitterId()
+    print 'Battery Status: %s (%d%%)' % (dex.ReadBatteryState(),
+                                         dex.ReadBatteryLevel())
+
+if __name__ == '__main__':
+  main( )
