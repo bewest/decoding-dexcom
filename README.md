@@ -3,6 +3,26 @@ decoding-dexcom
 
 hacking diabetes: give me my data
 
+## Setup
+
+There are some scripts in the
+[dexcom_reader](https://github.com/bewest/decoding-dexcom/tree/master/dexcom_reader) directory.
+
+They depend on https://github.com/compbrain/dexcom_reader.
+To use these scripts:
+
+```bash
+$ git clone https://github.com/bewest/decoding-dexcom.git
+$ cd decoding-dexcom/dexcom_reader
+$ git clone https://github.com/compbrain/dexcom_reader.git
+
+```
+then to test that everything worked, try
+
+```bash
+$ python dxcom-scan
+```
+
 ## helping
 
 Send me your packet captures!
