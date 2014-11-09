@@ -4,6 +4,7 @@ import user
 import dexcom_reader
 from dexcom_reader import readdata
 from pprint import pformat, pprint
+import xml.etree.ElementTree as etree
 
 def main( ):
   Dexcom = readdata.Dexcom
@@ -17,6 +18,13 @@ def main( ):
     print ('Found %s S/N: %s'
            % (dex.GetFirmwareHeader().get('ProductName'),
               dex.ReadManufacturingData().get('SerialNumber')))
+    xml = dex.ReadManufacturingData()
+    for x in list(xml):
+      print x
+    # root.append(xml)
+    print 
+    print 'Receiver Firmware: %s' % etree.tostring(dex.GetFirmwareHeader( ))
+    print 'Receiver Manufacturer: %s' % etree.tostring(xml)
     print 'Transmitter paired: %s' % dex.ReadTransmitterId()
     print 'Battery Status: %s (%d%%)' % (dex.ReadBatteryState(),
                                          dex.ReadBatteryLevel())
