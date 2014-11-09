@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import user
+import dexcom_reader
+from dexcom_reader import readdata
+from pprint import pformat, pprint
+
+def main( ):
+  Dexcom = readdata.Dexcom
+  device = Dexcom.FindDevice()
+  if not device:
+    sys.stderr.write('Could not find Dexcom G4 Receiver!\n')
+    sys.exit(1)
+  else:
+    print device
+    dex = Dexcom(device)
+    records = dex.ReadRecords('CAL_SET')
+    print '### CAL records: %d' % (len(records))
+    print '```python'
+    pprint(records)
+    print '```'
+    print '### CAL records: %d' % (len(records))
+    print "### Raw dump"
+    for rec in records:
+      print '```'
+      print rec.dump( )
+      print '```'
+
+if __name__ == '__main__':
+  main( )
+
+#####
+# EOF
