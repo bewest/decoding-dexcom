@@ -17,7 +17,8 @@ def main( ):
     records = dex.ReadRecords('SENSOR_DATA')
     print '### Sensor records: %d' % (len(records))
     print '```python'
-    pprint(records)
+    for record in records:
+      pprint(record.to_dict( ))
     print '```'
     print '### Sensor records: %d' % (len(records))
 
