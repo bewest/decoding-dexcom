@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+# PYTHON_ARGCOMPLETE_OK
+
+import user
+import dexcom_reader
+from dexcom_reader import readdata, constants
+from pprint import pformat, pprint
+import argparse
+import sys
+import json
+import argcomplete
+
+doc = """
+%(prog)s - Read Dexcom pages.
+"""
+def get_parser ( ):
+  parser = argparse.ArgumentParser(description=doc)
+  parser.add_argument('--out',
+      type=argparse.FileType('w'), default=sys.stdout)
+  parser.add_argument('--query', action='store_const', default=False, const=True)
+  types = constants.RECORD_TYPES
+  parser.add_argument('type', choices=types)
+  argcomplete.autocomplete(parser)
+  return parser
+
+def main( ):
+  parser = get_parser( )
+  args = parser.parse_args( )
+  Dexcom = readdata.Dexcom
+  device = Dexcom.FindDevice()
+  if not device:
+    sys.stderr.write('Could not find Dexcom G4 Receiver!\n')
+    sys.exit(1)
+  else:
+    print device
+    dex = Dexcom(device)
+    pprint(args)
+    if args.query:
+      page_range = dex.ReadDatabasePageRange(args.type)
+      print page_range
+    else:
+      records = dex.ReadRecords(args.type)
+      print '### %s records: %d' % (args.type, len(records))
+      print '```python'
+      results = [ ]
+      for record in records:
+        if callable(getattr(record, 'to_dict')):
+          results.append(record.to_dict( ))
+        else:
+          results.append(str(record))
+      json.dump(results, args.out)
+      print '```'
+      print '### Sensor records: %d' % (len(records))
+
+if __name__ == '__main__':
+  main( )
+
+#####
+# EOF
