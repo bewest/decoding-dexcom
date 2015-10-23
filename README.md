@@ -1,6 +1,8 @@
 decoding-dexcom
 ===============
 
+[![Join the chat at https://gitter.im/bewest/decoding-dexcom](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bewest/decoding-dexcom?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 hacking diabetes: give me my data
 
 ## Setup
